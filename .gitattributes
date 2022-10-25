@@ -1,5 +1,1 @@
 * linguist-vendored
-*.t linguist-vendored=false
-*.tl linguist-vendored=false
-*.t linguist-language=TADS3
-*.tl linguist-language=TADS3
