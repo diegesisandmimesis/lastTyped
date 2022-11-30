@@ -149,7 +149,7 @@ modify Action
 	// In principle this is safe for you to use as a game implementor,
 	// but you probably won't need to.
 	getCanonicalVerb() {
-		local isNoun, match, prop, i, toks, txt, v;
+		local isNoun, match, prop, i, j, toks, txt, v;
 
 		// Prefer the original tokens if that's not what we already have
 		if(getOriginalAction() != self)
@@ -167,7 +167,9 @@ modify Action
 				// If we have a match, skip to the end of
 				// this phrase.
 				if(match && (i == match.firstTokenIndex)) {
-					i = match.lastTokenIndex;
+					j = match.lastTokenIndex;
+					if(j > i)
+						i = j;
 					isNoun = true;
 					break;
 				}
@@ -183,7 +185,6 @@ modify Action
 					v = _getCanonicalVerb(v);
 				txt = (txt ? (txt + ' ') : '') + v;
 			}
-			
 		}
 		if(!txt || (txt.length() == 1) && _canonicalVerb)
 			return(_getCanonicalVerb(txt));
