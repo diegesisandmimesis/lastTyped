@@ -76,9 +76,7 @@ startRoom:      Room 'Void'
 // This object is mostly the same as the above, only we change the way
 // we declare the lastTypedNounList list.
 + Thing 'flat deflated tire/tyre/wheel/thingy' 'flat thingy'
-	"You just tried to <q>{verb}</q> the <q>{last/it dobj}</q>.
-	\nThe most frequently used term for this object has been
-	<q>{most/it dobj}</q>. "
+	"<<_debug()>> "
 
 	// In this case we supply our own list to lastTypedNounList.
 	// This means that we can refer to this object in ways that
@@ -89,6 +87,15 @@ startRoom:      Room 'Void'
 	// will remain the most-commonly used element of
 	// the lastTypedNounList (and not "flat thingy").
 	lastTypedNounList = static [ 'tire', 'tyre' ]
+
+	_debug() {
+		"You just tried to <q>{verb}</q> the <q>{last/it dobj}</q>.
+		\nThe most frequently used term for this object has been
+		<q>{most/it dobj}</q>. ";
+	}
+
+	dobjFor(Take) { action() { _debug(); inherited(); } }
+	dobjFor(Drop) { action() { _debug(); inherited(); } }
 ;
 // This object is mostly for testing different verbs (the dobjFor() method
 // below will catch all actions directed at the object).

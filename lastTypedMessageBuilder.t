@@ -14,7 +14,7 @@
 #include "lastTyped.h"
 
 modify MessageBuilder
-	execBeforeMe = [ lastTypedMessageBuilder ]
+	execBeforeMe = (nilToList(inherited()) + [ lastTypedMessageBuilder ])
 ;
 
 lastTypedMessageBuilder: PreinitObject
